@@ -9,7 +9,7 @@ The creature models, textures and idle poses in this pack come from Cobblemon, a
 
 Changes made to the originals:
 
-- The Bedrock geometry files were converted to Java item models with a script (tools/gen-models.js in the Captura source). Bone transforms were combined into a rotation for each cube.
+- The Bedrock geometry files were converted to Java item models with a script (tools/gen-models.js in this repository). Bone transforms were combined into a rotation for each cube.
 - The pose shown is the species' ground idle animation at time zero. Nothing is animated.
 - A model that did not fit the model size limit was scaled down, and the plugin scales it back up when it shows it.
 - Textures were copied without changes.
