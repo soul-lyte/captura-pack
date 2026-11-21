@@ -21,3 +21,5 @@ Pokemon and the names of the creatures are trademarks of Nintendo, Creatures Inc
 ## Original work
 
 The capture ball icon, the codex icon and the pack icon were drawn for Captura and are released under the same non-commercial terms as the rest of the pack.
+
+The menu art (backgrounds, buttons, HP bar) and the font definition `assets/captura/font/gui.json` were also drawn for Captura by `tools/make-gui.py`. They are not based on Cobblemon's interface art. The font points at Minecraft's own `font/ascii.png` for its letters, so no Mojang file is copied into the pack.

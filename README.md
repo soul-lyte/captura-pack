@@ -1,6 +1,6 @@
 # Captura resource pack
 
-Models and icons for the Captura plugin on a private Minecraft server. The pack replaces nothing in the vanilla game. It adds item models under the `captura` namespace: one model for each of the 151 first-generation species (plus a shiny variant), a capture ball icon and an admin codex icon.
+Models, icons and menu art for the Captura plugin on a private Minecraft server. The pack replaces nothing in the vanilla game. It adds item models under the `captura` namespace: one model for each of the 151 first-generation species (plus a shiny variant), a capture ball icon and an admin codex icon. It also adds a font, `captura:gui`, and menu pictures that the plugin puts in the title of its chest menus, so the party, battle, PC and shop screens get their own look.
 
 The plugin sends the zip to players when they join. The zip is attached to each release of this repository. It is built from the files in this folder, so downloading the repository and zipping `pack.mcmeta`, `pack.png` and `assets` gives the same pack.
 
