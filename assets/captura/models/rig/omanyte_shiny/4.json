@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[7,8,7],"to":[9,8,9],"faces":{"up":{"uv":[5.75,5,5.25,4.5],"texture":"#0"},"down":{"uv":[6.25,4.5,5.75,5],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/omanyte_shiny","particle":"captura:item/creature/omanyte_shiny"}}

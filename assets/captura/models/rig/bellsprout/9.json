@@ -1,0 +1,1 @@
+{"texture_size":[32,32],"elements":[{"from":[7.99,5.99,7.49],"to":[8.01,10.01,8.51],"faces":{"east":{"uv":[5,14,4.5,16],"texture":"#0"},"west":{"uv":[4.5,14,4,16],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/bellsprout","particle":"captura:item/creature/bellsprout"}}

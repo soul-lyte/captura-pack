@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[4.5,8,6.5],"to":[11.5,8,9.5],"faces":{"up":{"uv":[9,3.75,10.75,3],"texture":"#0"},"down":{"uv":[10.75,3,12.5,3.75],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/goldeen_shiny","particle":"captura:item/creature/goldeen_shiny"}}

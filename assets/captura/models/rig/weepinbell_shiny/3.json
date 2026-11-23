@@ -1,0 +1,1 @@
+{"texture_size":[64,32],"elements":[{"from":[6.5,5,8],"to":[9.5,11,8],"faces":{"south":{"uv":[9,1,8.25,4],"texture":"#0"},"north":{"uv":[8.25,1,7.5,4],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/weepinbell_shiny","particle":"captura:item/creature/weepinbell_shiny"}}

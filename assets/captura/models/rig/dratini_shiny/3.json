@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[5,3,8],"to":[11,13,8],"faces":{"south":{"uv":[10.5,10.5,9,13],"texture":"#0"},"north":{"uv":[9,10.5,7.5,13],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/dratini_shiny","particle":"captura:item/creature/dratini_shiny"}}

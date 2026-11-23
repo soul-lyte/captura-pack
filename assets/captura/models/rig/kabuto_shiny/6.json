@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[7,7.5,8],"to":[9,8.5,8],"faces":{"south":{"uv":[1.5,1.75,2,2],"texture":"#0"},"north":{"uv":[1,1.75,1.5,2],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/kabuto_shiny","particle":"captura:item/creature/kabuto_shiny"}}

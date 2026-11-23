@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[2.99,4.49,7.99],"to":[13.01,11.51,8.01],"rotation":{"origin":[8,8,8],"x":-45,"y":0,"z":0},"faces":{"south":{"uv":[13.5,6.25,16,8],"texture":"#0"},"north":{"uv":[11,6.25,13.5,8],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/tentacool_shiny","particle":"captura:item/creature/tentacool_shiny"}}

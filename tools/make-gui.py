@@ -281,13 +281,12 @@ def make_crate():
 
 
 def make_daycare():
+    """Three cards, each three slots wide and four rows tall: parent, parent, egg."""
     img, d = frame(H4, 4)
-    panel(d, 6, 15, 169, 88)
-    cell(d, 8, 36)
-    cell(d, 80, 36)
-    cell(d, 152, 36)
-    icon(d, "plus", 49, 40, (110, 116, 126, 255))
-    icon(d, "right", 121, 39, (110, 116, 126, 255))
+    for x0, x1 in [(6, 59), (61, 113), (115, 169)]:
+        panel(d, x0, 15, x1, 88)
+    for x in (26, 80, 134):
+        cell(d, x, 36)
     return img
 
 
@@ -384,9 +383,78 @@ def main():
     with open(os.path.join(font_dir, "gui.json"), "w") as fh:
         json.dump({"providers": providers}, fh, separators=(",", ":"))
 
+    # Hover square: the user chose a faint outline in every inventory instead of the grey fill.
+    hl_dir = os.path.join(pack_dir, "assets/minecraft/textures/gui/sprites/container")
+    os.makedirs(hl_dir, exist_ok=True)
+    Image.new("RGBA", (24, 24), (0, 0, 0, 0)).save(os.path.join(hl_dir, "slot_highlight_back.png"))
+    front = Image.new("RGBA", (24, 24), (0, 0, 0, 0))
+    ImageDraw.Draw(front).rectangle([4, 4, 19, 19], outline=(255, 255, 255, 120))
+    front.save(os.path.join(hl_dir, "slot_highlight_front.png"))
+
+    # A see-through square shown in place of the invisible click areas when gui.debug-zones is on.
+    dbg_tex = os.path.join(pack_dir, "assets/captura/textures/item/gui")
+    os.makedirs(dbg_tex, exist_ok=True)
+    Image.new("RGBA", (16, 16), (255, 40, 40, 110)).save(os.path.join(dbg_tex, "zone_debug.png"))
+    os.makedirs(os.path.join(pack_dir, "assets/captura/models/item/gui"), exist_ok=True)
+    with open(os.path.join(pack_dir, "assets/captura/models/item/gui/zone_debug.json"), "w") as fh:
+        json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "captura:item/gui/zone_debug"}}, fh)
+
+    # Hotbar icons for battles in the world: buttons and one gem per element.
+    icon_dir = os.path.join(pack_dir, "assets/captura/textures/item/gui")
+    model_dir = os.path.join(pack_dir, "assets/captura/models/item/gui")
+    item_dir = os.path.join(pack_dir, "assets/captura/items/gui")
+    for dpath in (icon_dir, model_dir, item_dir):
+        os.makedirs(dpath, exist_ok=True)
+
+    def save_icon(name, img):
+        img.save(os.path.join(icon_dir, name + ".png"))
+        with open(os.path.join(model_dir, name + ".json"), "w") as fh:
+            json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": "captura:item/gui/" + name}}, fh)
+        with open(os.path.join(item_dir, name + ".json"), "w") as fh:
+            json.dump({"model": {"type": "minecraft:model", "model": "captura:item/gui/" + name}}, fh)
+
+    def badge(fill, glyph=None, glyph_color=(255, 255, 255, 255)):
+        img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+        dd = ImageDraw.Draw(img)
+        dd.ellipse([0, 0, 15, 15], fill=(20, 22, 26, 255))
+        dd.ellipse([1, 1, 14, 14], fill=fill)
+        dd.arc([2, 2, 13, 13], 200, 320, fill=tuple(min(255, c + 60) for c in fill[:3]) + (255,))
+        if glyph:
+            rows = ICONS[glyph]
+            gx = (16 - len(rows[0])) // 2
+            gy = (16 - len(rows)) // 2
+            for r, row in enumerate(rows):
+                for c, ch in enumerate(row):
+                    if ch == "#":
+                        dd.point((gx + c, gy + r), fill=glyph_color)
+        return img
+
+    save_icon("fight", badge(RED, "fight"))
+    save_icon("switch", badge(GREEN, "switch"))
+    save_icon("run", badge(BLUE, "run"))
+    save_icon("back", badge(GREY, "back"))
+    save_icon("flag", badge(GREY, "flag"))
+    save_icon("wait", badge((90, 95, 104, 255), "plus"))
+    types = {
+        "normal": (190, 190, 170), "fire": (240, 128, 48), "water": (77, 144, 213), "grass": (99, 188, 90),
+        "electric": (243, 210, 59), "ice": (115, 206, 192), "fighting": (206, 65, 107), "poison": (170, 107, 200),
+        "ground": (217, 120, 69), "flying": (143, 168, 221), "psychic": (250, 113, 121), "bug": (145, 193, 47),
+        "rock": (197, 183, 140), "ghost": (82, 105, 173), "dragon": (11, 109, 195), "dark": (90, 84, 101),
+        "steel": (90, 142, 161), "fairy": (236, 143, 230),
+    }
+    for name, rgb in types.items():
+        gem = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+        gd = ImageDraw.Draw(gem)
+        gd.polygon([(8, 0), (15, 7), (8, 15), (0, 7)], fill=(20, 22, 26, 255))
+        gd.polygon([(8, 2), (13, 7), (8, 13), (2, 7)], fill=rgb + (255,))
+        gd.polygon([(8, 2), (13, 7), (8, 7), (5, 5)], fill=tuple(min(255, c + 70) for c in rgb) + (255,))
+        save_icon("type_" + name, gem)
+
     items_dir = os.path.join(pack_dir, "assets/captura/items")
     with open(os.path.join(items_dir, "blank.json"), "w") as fh:
         json.dump({"model": {"type": "minecraft:empty"}}, fh)
+    with open(os.path.join(items_dir, "zone_debug.json"), "w") as fh:
+        json.dump({"model": {"type": "minecraft:model", "model": "captura:item/gui/zone_debug"}}, fh)
 
     layout = {
         "frameWidth": W,

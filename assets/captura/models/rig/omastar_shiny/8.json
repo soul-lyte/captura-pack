@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[6,7,8],"to":[10,9,8],"faces":{"south":{"uv":[8.75,2.75,9.75,3.25],"texture":"#0"},"north":{"uv":[7.75,2.75,8.75,3.25],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/omastar_shiny","particle":"captura:item/creature/omastar_shiny"}}

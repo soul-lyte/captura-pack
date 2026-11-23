@@ -1,0 +1,1 @@
+{"texture_size":[128,128],"elements":[{"from":[8,3.5,-2],"to":[8,12.5,18],"faces":{"east":{"uv":[0,5.875,2.5,7],"texture":"#0"},"west":{"uv":[2.5,5.875,5,7],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/seaking_shiny","particle":"captura:item/creature/seaking_shiny"}}

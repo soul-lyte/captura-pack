@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[5,5.5,8],"to":[11,10.5,8],"faces":{"south":{"uv":[13.5,4.75,15,6],"texture":"#0"},"north":{"uv":[12,4.75,13.5,6],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/paras","particle":"captura:item/creature/paras"}}

@@ -1,0 +1,1 @@
+{"texture_size":[128,128],"elements":[{"from":[5,8,2],"to":[11,8,14],"faces":{"up":{"uv":[14.25,11,13.5,9.5],"texture":"#0"},"down":{"uv":[15,9.5,14.25,11],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/dewgong","particle":"captura:item/creature/dewgong"}}

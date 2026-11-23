@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[7,4.5,8],"to":[9,11.5,8],"faces":{"south":{"uv":[13.25,5.25,13.75,7],"texture":"#0"},"north":{"uv":[12.75,5.25,13.25,7],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/butterfree","particle":"captura:item/creature/butterfree"}}
