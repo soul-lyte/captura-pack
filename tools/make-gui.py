@@ -211,6 +211,42 @@ def rows_panels(d, n, with_track):
             track(d, 30, y + 9)
 
 
+def make_codex_grid():
+    """45 species cells, then a footer: previous, level down, level label (shiny switch), level up, next."""
+    img, d = frame(H6, 6)
+    panel(d, 6, 15, 169, 106)
+    for r in range(5):
+        for c in range(9):
+            cell(d, 8 + 18 * c, 18 + 18 * r)
+    y = 18 + 18 * 5
+    button(d, 7, y, 42, y + 15, GREY, None)
+    icon(d, "left", 22, y + 4, (52, 56, 63, 255))
+    button(d, 43, y, 60, y + 15, GREY, None)
+    d.rectangle([48, y + 7, 54, y + 8], fill=(52, 56, 63, 255))
+    panel(d, 61, y, 114, y + 15)
+    button(d, 115, y, 132, y + 15, GREY, None)
+    d.rectangle([120, y + 7, 126, y + 8], fill=(52, 56, 63, 255))
+    d.rectangle([122, y + 5, 124, y + 10], fill=(52, 56, 63, 255))
+    button(d, 133, y, 168, y + 15, GREY, None)
+    icon(d, "right", 147, y + 4, (52, 56, 63, 255))
+    return img
+
+
+CARD_STEPS = 32         # the card HP bar is 64 px wide
+
+
+def make_cards(n):
+    """Up to six cards, two across and three down; each card is four slots wide and two tall."""
+    img, d = frame(H6, 6)
+    for k in range(n):
+        x0 = 6 if k % 2 == 0 else 96
+        y0 = 17 + 36 * (k // 2)
+        panel(d, x0, y0, x0 + 73, y0 + 35)
+        cell(d, x0 + 2, y0 + 1)
+        box(d, x0 + 3, y0 + 28, x0 + 70, y0 + 34, (27, 29, 33, 255), (10, 11, 13, 255))
+    return img
+
+
 def make_list(n, with_track, footer):
     img, d = frame(H6, 6)
     rows_panels(d, n, with_track)
@@ -323,6 +359,9 @@ def main():
         screens[f"list_plain_{n}"] = make_list(n, False, False)
     for n in range(1, 6):
         screens[f"listf_{n}"] = make_list(n, False, True)
+    for n in range(1, 7):
+        screens[f"cards_{n}"] = make_cards(n)
+    screens["codex_grid"] = make_codex_grid()
     screens["battle_wild"] = make_battle(False)
     screens["battle_trainer"] = make_battle(True)
     screens["moves"] = make_moves()
@@ -357,6 +396,14 @@ def main():
         for r in range(5):
             bd.line([0, y0 + r, 2 * k - 1, y0 + r], fill=(shades[r], shades[r], shades[r], 255))
     bar.save(os.path.join(gui_dir, "bar.png"))
+    small = Image.new("RGBA", (2 * CARD_STEPS, 5 * CARD_STEPS), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(small)
+    for k in range(1, CARD_STEPS + 1):
+        y0 = (k - 1) * 5
+        for r in range(5):
+            sd.line([0, y0 + r, 2 * k - 1, y0 + r], fill=(shades[r], shades[r], shades[r], 255))
+    small.save(os.path.join(gui_dir, "bar_card.png"))
+    card_base = 0xF9000
 
     # text: ascii.png letters at every y, via private-use characters
     text_base = 0xF0000
@@ -377,6 +424,8 @@ def main():
         if level >= 8:
             providers.append({"type": "bitmap", "file": "captura:gui/bar.png", "ascent": 13 - level,
                               "height": 5, "chars": [cp(bar_base + level * 64 + k) for k in range(1, BAR_STEPS + 1)]})
+            providers.append({"type": "bitmap", "file": "captura:gui/bar_card.png", "ascent": 13 - level,
+                              "height": 5, "chars": [cp(card_base + level * 64 + k) for k in range(1, CARD_STEPS + 1)]})
 
     font_dir = os.path.join(pack_dir, "assets/captura/font")
     os.makedirs(font_dir, exist_ok=True)
@@ -413,42 +462,13 @@ def main():
         with open(os.path.join(item_dir, name + ".json"), "w") as fh:
             json.dump({"model": {"type": "minecraft:model", "model": "captura:item/gui/" + name}}, fh)
 
-    def badge(fill, glyph=None, glyph_color=(255, 255, 255, 255)):
-        img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-        dd = ImageDraw.Draw(img)
-        dd.ellipse([0, 0, 15, 15], fill=(20, 22, 26, 255))
-        dd.ellipse([1, 1, 14, 14], fill=fill)
-        dd.arc([2, 2, 13, 13], 200, 320, fill=tuple(min(255, c + 60) for c in fill[:3]) + (255,))
-        if glyph:
-            rows = ICONS[glyph]
-            gx = (16 - len(rows[0])) // 2
-            gy = (16 - len(rows)) // 2
-            for r, row in enumerate(rows):
-                for c, ch in enumerate(row):
-                    if ch == "#":
-                        dd.point((gx + c, gy + r), fill=glyph_color)
-        return img
-
-    save_icon("fight", badge(RED, "fight"))
-    save_icon("switch", badge(GREEN, "switch"))
-    save_icon("run", badge(BLUE, "run"))
-    save_icon("back", badge(GREY, "back"))
-    save_icon("flag", badge(GREY, "flag"))
-    save_icon("wait", badge((90, 95, 104, 255), "plus"))
-    types = {
-        "normal": (190, 190, 170), "fire": (240, 128, 48), "water": (77, 144, 213), "grass": (99, 188, 90),
-        "electric": (243, 210, 59), "ice": (115, 206, 192), "fighting": (206, 65, 107), "poison": (170, 107, 200),
-        "ground": (217, 120, 69), "flying": (143, 168, 221), "psychic": (250, 113, 121), "bug": (145, 193, 47),
-        "rock": (197, 183, 140), "ghost": (82, 105, 173), "dragon": (11, 109, 195), "dark": (90, 84, 101),
-        "steel": (90, 142, 161), "fairy": (236, 143, 230),
-    }
-    for name, rgb in types.items():
-        gem = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-        gd = ImageDraw.Draw(gem)
-        gd.polygon([(8, 0), (15, 7), (8, 15), (0, 7)], fill=(20, 22, 26, 255))
-        gd.polygon([(8, 2), (13, 7), (8, 13), (2, 7)], fill=rgb + (255,))
-        gd.polygon([(8, 2), (13, 7), (8, 7), (5, 5)], fill=tuple(min(255, c + 70) for c in rgb) + (255,))
-        save_icon("type_" + name, gem)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import icons
+    for name, img in icons.all_icons().items():
+        save_icon(name, img)
+    item_tex = os.path.join(pack_dir, "assets/captura/textures/item")
+    icons.codex_book().save(os.path.join(item_tex, "codex.png"))
+    icons.capture_ball().save(os.path.join(item_tex, "capture_ball.png"))
 
     items_dir = os.path.join(pack_dir, "assets/captura/items")
     with open(os.path.join(items_dir, "blank.json"), "w") as fh:
@@ -462,6 +482,8 @@ def main():
         "textBase": text_base,
         "barBase": bar_base,
         "barSteps": BAR_STEPS,
+        "cardBarBase": card_base,
+        "cardBarSteps": CARD_STEPS,
         "barWidth": BAR_W,
         "shiftBase": 0xE100,
         "spaceChar": 0xE140,
