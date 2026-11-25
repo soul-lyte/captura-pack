@@ -1,1 +1,1 @@
-{"texture_size":[64,64],"elements":[{"from":[7,8,7],"to":[9,8,9],"faces":{"up":{"uv":[1.25,5,0.75,4.5],"texture":"#0"},"down":{"uv":[1.75,4.5,1.25,5],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/omanyte_shiny","particle":"captura:item/creature/omanyte_shiny"}}
+{"texture_size":[64,64],"elements":[{"from":[7,8,7],"to":[9,8,9],"faces":{"up":{"uv":[6.25,4.75,6.75,4.25],"texture":"#0"},"down":{"uv":[6.75,4.25,7.25,4.75],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/omanyte_shiny","particle":"captura:item/creature/omanyte_shiny"}}

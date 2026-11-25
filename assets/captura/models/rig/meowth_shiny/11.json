@@ -1,0 +1,1 @@
+{"texture_size":[64,32],"elements":[{"from":[5.49,6.99,7.99],"to":[10.51,9.01,8.01],"faces":{"south":{"uv":[9.25,13,10.5,14],"texture":"#0"},"north":{"uv":[8,13,9.25,14],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/meowth_shiny","particle":"captura:item/creature/meowth_shiny"}}

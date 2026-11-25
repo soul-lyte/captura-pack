@@ -1,1 +1,1 @@
-{"texture_size":[32,32],"elements":[{"from":[7.98,5.98,7.48],"to":[8.02,10.02,8.52],"faces":{"east":{"uv":[5,14,5.5,16],"texture":"#0"},"west":{"uv":[5.5,14,6,16],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/bellsprout_shiny","particle":"captura:item/creature/bellsprout_shiny"}}
+{"texture_size":[32,32],"elements":[{"from":[8,6.5,7.5],"to":[8,9.5,8.5],"faces":{"east":{"uv":[2,14,1.5,15.5],"texture":"#0"},"west":{"uv":[1.5,14,1,15.5],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/bellsprout_shiny","particle":"captura:item/creature/bellsprout_shiny"}}

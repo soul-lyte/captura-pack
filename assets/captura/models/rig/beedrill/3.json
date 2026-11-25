@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[5,8,7.5],"to":[11,8,8.5],"faces":{"up":{"uv":[10.5,0.25,9,0],"texture":"#0"},"down":{"uv":[12,0,10.5,0.25],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/beedrill","particle":"captura:item/creature/beedrill"}}
