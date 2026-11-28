@@ -1,0 +1,1 @@
+{"texture_size":[64,64],"elements":[{"from":[3.5,8,5.5],"to":[12.5,8,10.5],"faces":{"up":{"uv":[8.25,6,6,4.75],"texture":"#0"},"down":{"uv":[10.5,4.75,8.25,6],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/poliwag_shiny","particle":"captura:item/creature/poliwag_shiny"}}

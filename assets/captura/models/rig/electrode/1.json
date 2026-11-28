@@ -1,0 +1,1 @@
+{"texture_size":[128,64],"elements":[{"from":[2,6,8],"to":[14,10,8],"rotation":{"origin":[8,8,8],"x":0,"y":0,"z":-5},"faces":{"south":{"uv":[8.25,0.75,9.75,1.75],"texture":"#0"},"north":{"uv":[6.75,0.75,8.25,1.75],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/electrode","particle":"captura:item/creature/electrode"}}

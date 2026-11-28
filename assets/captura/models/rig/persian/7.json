@@ -1,1 +1,1 @@
-{"texture_size":[128,64],"elements":[{"from":[8,7.5,7.5],"to":[8,8.5,8.5],"faces":{"east":{"uv":[1,0.75,1.125,1],"texture":"#0"},"west":{"uv":[1.125,0.75,1.25,1],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/persian","particle":"captura:item/creature/persian"}}
+{"texture_size":[128,64],"elements":[{"from":[8,7,6],"to":[8,9,10],"faces":{"east":{"uv":[4,13,4.5,13.5],"texture":"#0"},"west":{"uv":[4.5,13,5,13.5],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/persian","particle":"captura:item/creature/persian"}}

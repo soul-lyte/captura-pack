@@ -1,1 +1,1 @@
-{"texture_size":[128,64],"elements":[{"from":[5.99,6.99,7.99],"to":[10.01,9.01,8.01],"faces":{"south":{"uv":[10.25,0,9.75,0.5],"texture":"#0"},"north":{"uv":[9.75,0,9.25,0.5],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/parasect","particle":"captura:item/creature/parasect"}}
+{"texture_size":[128,64],"elements":[{"from":[6,7,8],"to":[10,9,8],"faces":{"south":{"uv":[10.25,0.75,9.75,1.25],"texture":"#0"},"north":{"uv":[9.75,0.75,9.25,1.25],"texture":"#0"}}}],"textures":{"0":"captura:item/creature/parasect","particle":"captura:item/creature/parasect"}}
